@@ -1,0 +1,143 @@
+alumni-network/
+│
+├── public/
+│   ├── logo.svg
+│   ├── favicon.ico
+│   ├── images/
+│   └── assets/
+│
+├── src/
+│
+│   ├── app/
+│   │   ├── layout.jsx
+│   │   ├── page.jsx
+│   │   ├── globals.css
+│   │   │
+│   │   ├── login/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── dashboard/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── alumni/
+│   │   │   ├── directory/
+│   │   │   ├── stories/
+│   │   │   ├── mentorship/
+│   │   │   ├── opportunities/
+│   │   │   └── where-they-are-now/
+│   │   │
+│   │   ├── profile/
+│   │   ├── settings/
+│   │   └── admin/
+│   │
+│
+│   ├── components/
+│   │
+│   │   ├── ui/
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── Card.jsx
+│   │   │   └── Loader.jsx
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Header.jsx
+│   │   │   └── Footer.jsx
+│   │   │
+│   │   ├── auth/
+│   │   │   ├── LoginForm.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── SessionGuard.jsx
+│   │   │   └── RoleGuard.jsx
+│   │   │
+│   │   └── alumni/
+│   │       ├── AlumniCard.jsx
+│   │       ├── MentorCard.jsx
+│   │       ├── StoryCard.jsx
+│   │       ├── UniversityCard.jsx
+│   │       └── StatsCard.jsx
+│
+│
+├── firebase/
+│   │
+│   ├── config.js
+│   ├── auth.js
+│   ├── firestore.js
+│   ├── storage.js
+│   ├── analytics.js
+│   │
+│   └── rules/
+│       ├── firestore.rules
+│       └── storage.rules
+│
+│
+├── cms/
+│   │
+│   ├── sanity.config.js
+│   │
+│   ├── schemas/
+│   │   │
+│   │   ├── alumni.js
+│   │   ├── mentorship.js
+│   │   ├── stories.js
+│   │   ├── opportunities.js
+│   │   ├── statistics.js
+│   │   ├── universities.js
+│   │   └── events.js
+│   │
+│   └── queries/
+│       ├── alumniQueries.js
+│       └── storyQueries.js
+│
+│
+├── services/
+│   ├── authService.js
+│   ├── alumniService.js
+│   ├── cmsService.js
+│   ├── mentorshipService.js
+│   └── analyticsService.js
+│
+│
+├── hooks/
+│   ├── useAuth.js
+│   ├── useRole.js
+│   ├── useUser.js
+│   ├── useCMS.js
+│   └── usePermissions.js
+│
+│
+├── context/
+│   ├── AuthContext.jsx
+│   ├── UserContext.jsx
+│   ├── ThemeContext.jsx
+│   └── DashboardContext.jsx
+│
+│
+├── middleware/
+│   ├── authMiddleware.js
+│   ├── adminMiddleware.js
+│   └── sessionMiddleware.js
+│
+│
+├── lib/
+│   ├── encryption.js
+│   ├── permissions.js
+│   ├── constants.js
+│   ├── roleCheck.js
+│   └── formatters.js
+│
+│
+├── types/
+│   ├── alumni.ts
+│   ├── mentorship.ts
+│   └── user.ts
+│
+│
+├── .env.local
+├── .gitignore
+├── tailwind.config.js
+├── next.config.js
+├── package.json
+└── README.md

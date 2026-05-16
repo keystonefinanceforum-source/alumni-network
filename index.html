@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KFF | Advancing Financial Thoughts</title>
+ <meta name="description" content="Keystone is a student-led finance forum focused on investing, business, markets, and strategic thinking, empowering future leaders through discussions, research, and collaboration.">
+  <meta name="keywords" content="student finance forum, finance community, student investors, investment club, finance education, stock market learning, business and finance, young investors, financial literacy, student leadership, market analysis, equity research, startup and finance, future finance leaders, finance networking, student entrepreneurship, investment strategies, economic discussions, corporate finance, wealth building">
+  <meta name="author" content="Keystone">
+  <link rel="icon" href="/Src/assets/icons/logo/Icons.png" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Src/assets/icons/logo/Icons.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Src/assets/icons/logo/Icons.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Src/assets/icons/logo/Icons.png">
+  <meta property="og:title" content="KFF | Advancing Financial Thoughts">
+  <meta property="og:description" content="Keystone is a student-led finance forum focused on investing, business, markets, and strategic thinking, empowering future leaders through discussions, research, and collaboration.">
+  <meta property="og:image" content="/Src/assets/Logo/Patterned.png">
+  <meta property="og:url" content="https://keystoneff.org">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KFF | Advancing Financial Thoughts">
+  <meta name="twitter:description" content="Keystone is a student-led finance forum focused on investing, business, markets, and strategic thinking, empowering future leaders through discussions, research, and collaboration.">
+  <meta name="twitter:image" content="/Src/assets/Logo/Patterned.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/index-css/normalize.css">
+  <link rel="stylesheet" href="/index-css/index.css">
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@latest/dist/sanityClient.browser.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="/>
+<link rel="preconnect" href="https://img.icons8.com/">
+<link rel="preconnect" href="https://ajgroupsimages.b-cdn.net/">
+<link rel="preload" href="/index-css/index.css">
+<link rel="preload" href="https://ajgroupsimages.b-cdn.net/">
+ <link rel="preload" href="https://img.icons8.com/"> 
+<link rel="stylesheet" href="/CSS/index.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+/>
+
+</head>
+<body>
+
+  <nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">
+     <img src="Src/assets/Logo/Untitled-1.png" alt="Keystone">
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="#">Partners</a></li>
+    <li><a href="/insights-research.html">Insights & Research Paper</a></li>
+    <li><a href="#">Board</a></li>
+    <li><a href="#">Alumni</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="">Partners</a>
+    <a href="/insights-research.html">Insights</a>
+    <a href="#">Board</a>
+    <a href="#">Alumni</a>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+</script>
+
+<section class="newsroom-hero" id="newsroomHero">
+
+<script type="module">
+  const GROQ = `
+    *[_type == "newsroom" && index == true]
+| order(publishedAt desc)[0]{
+  title,
+  publishedAt,
+  slug,
+  snippet,
+  thumbnail{
+    asset->{ url }
+  }
+}
+
+  `;
+
+  const API_URL = `https://662mk9fk.api.sanity.io/v2025-08-25/data/query/production?query=${encodeURIComponent(GROQ)}&perspective=published`;
+
+  async function loadNewsroom() {
+    try {
+      const res = await fetch(API_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP error! ${res.status}`);
+
+      const data = await res.json();
+      const newsroom = data.result;
+
+      const container = document.getElementById("newsroomHero");
+      if (!container || !newsroom) return;
+
+      const year = newsroom.publishedAt
+        ? new Date(newsroom.publishedAt).getFullYear()
+        : "";
+
+     container.innerHTML = `
+  <div class="newsroom-hero-inner">
+    <img 
+      src="${newsroom.thumbnail?.asset?.url || "https://via.placeholder.com/1200x700"}" 
+      alt="${newsroom.title || "Newsroom image"}"
+      
+      class="newsroom-bg"
+    >
+
+    <div class="newsroom-left">
+      
+      <h1>${newsroom.title || ""}</h1>
+      <p>${newsroom.snippet || ''}</p>
+
+      <a href="/newsroom.html/${newsroom.slug?.current}" class="newsroom-btn">
+  Read Here <span><img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/right--v1.png" alt="right--v1"/></span>
+</a>
+
+    </div>
+  </div>
+`;
+
+
+    } catch (err) {
+      console.error("❌ Failed to load newsroom:", err);
+      const container = document.getElementById("newsroomHero");
+      if (container) {
+        container.innerHTML = `<p style="color:red;">Failed to load newsroom content.</p>`;
+      }
+    }
+  }
+
+  loadNewsroom();
+</script>
+
+</section>
+
+<section>
+  <div class="about-us-text">
+     The <strong>Keystone Finance Forum </strong>is the premier student-run finance institution developing the next generation of financial thinkers. We build the person who analyse, question, and engage with finance at a level that goes far beyond the classroom — 
+     and a professional network of driven minds built to last well beyond academics.
+  </div>
+</section>
+
+<section>
+  <div class="three-pillars">
+  Our Three Pillars
+</div>
+
+  <div class="wrapper">
+  <div class="grid">
+ 
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">01</span>
+        <div class="icon-wrap">
+          <img src="/icons/business-and-finance (2).png" alt="finance">
+        </div>
+      </div>
+      <h2 class="card-title">Financial Intelligence</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">Building strong financial thinking through market awareness, investing basics, business analysis, and real-world economic understanding that goes beyond textbooks.</p>
+      
+    </div>
+ 
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">02</span>
+        <div class="icon-wrap">
+          <img src="/icons/community.png" alt="finance">
+        </div>
+      </div>
+      <h2 class="card-title">Leadership & Initiative</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">Creating future leaders by encouraging public speaking, teamwork, event management, networking, and decision-making through student-led projects and discussions.</p>
+      
+    </div>
+ 
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">03</span>
+        <div class="icon-wrap">
+         <img src="/icons/idea.png" alt="finance">
+        </div>
+      </div>
+      <h2 class="card-title">Innovation & Impact</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">Connecting finance with innovation, entrepreneurship, and social impact by exploring emerging industries, startup culture, and ideas that shape the future economy.</p>
+     
+    </div>
+ 
+  </div>
+</div>
+</section>
+
+<section>
+  <div class="class-for-feaured-insights">
+    Featured Insights
+  </div>
+</section>
+
+<section id="insightsContainer">
+ <script type="module">
+const GROQ = `
+  *[_type == "insight" && featured == true]
+  | order(publishedAt desc)[0...2]{
+    title,
+    slug,
+    snippet,
+    publishedAt,
+    category,
+    authors,
+    thumbnail{
+      asset->{url}
+    }
+  }
+`;
+  const API_URL = `https://662mk9fk.api.sanity.io/v2025-08-25/data/query/production?query=${encodeURIComponent(GROQ)}&perspective=published`;
+
+  async function loadInsightsPage() {
+    try {
+      const res = await fetch(API_URL, { cache: "no-store" });
+
+      if (!res.ok) {
+        throw new Error(`HTTP Error: ${res.status}`);
+      }
+
+      const data = await res.json();
+      const insights = data.result || [];
+
+      const container = document.getElementById("insightsContainer");
+
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      if (insights.length === 0) {
+        container.innerHTML = `<p>No insights found.</p>`;
+        return;
+      }
+
+      insights.forEach((insight) => {
+
+        const date = insight.publishedAt
+          ? new Date(insight.publishedAt).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })
+          : "";
+
+        container.innerHTML += `
+          <article class="insight-card">
+
+            <a href="/pages/insights/in-detail-slug.html?slug=${insight.slug?.current || ''}" class="insight-image-link">
+              <img 
+                src="${insight.thumbnail?.asset?.url || 'https://via.placeholder.com/800x500'}"
+                alt="${insight.title || 'Insight image'}"
+                class="insight-image"
+              >
+            </a>
+
+            <div class="insight-content">
+
+              <p class="insight-meta">
+                ${date}
+                ${insight.category ? ` • ${insight.category}` : ""}
+              </p>
+
+              <h2 class="insight-title">
+                <a href="/pages/insights/in-detail-slug.html?slug=${insight.slug?.current || ''}">
+                  ${insight.title || ""}
+                </a>
+              </h2>
+
+              <p class="insight-snippet">
+                ${insight.snippet || ""}
+              </p>
+
+              <a 
+                href="/pages/insights/in-detail-slug.html?slug=${insight.slug?.current || ''}" 
+                class="insight-readmore"
+              >
+                Read More →
+              </a>
+
+            </div>
+          </article>
+        `;
+      });
+
+    } catch (err) {
+      console.error("❌ Failed to load insights:", err);
+
+      const container = document.getElementById("insightsContainer");
+
+      if (container) {
+        container.innerHTML = `
+          <p style="color:red;">
+            Failed to load insights.
+          </p>
+        `;
+      }
+    }
+  }
+
+  loadInsightsPage();
+</script>
+
+</section>
+   <div id="insights-see-more-wrap">
+  <a href="/pages/insights/insights.html" id="insights-see-more-btn">See More</a>
+</div>
+
+<section class="careers-section">
+
+  <p class="careers-label">Simulation</p>
+
+  <div class="careers-inner">
+
+    <div class="careers-text">
+      <h2>Test Your Financial Edge</h2>
+      <p>Built for high school students, this interactive game challenges your ability to think like an investor, strategist, and consultant — without the confusing corporate jargon. We’ve taken real-world business and finance metrics and simplified them into fast-paced decisions, realistic scenarios, and competitive problem-solving.</p>
+      <a href="/simulator-v-1/dist/sim.html">Explore</a>
+    </div>
+
+    <div class="careers-image-wrap">
+      <div class="blue-block"></div>
+     <img class="Sirv" data-src="https://keystone.sirv.com/Images/Boardroom.png" alt="">
+<script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+    </div>
+
+  </div>
+
+</section>
+<section class="for-artboard">
+<div class="moves">
+  Show Your Creativity
+</div>
+
+<div class="entrprenuer">
+  Entrepreneurship starts where creativity meets execution. Ideas alone change nothing — the people willing to build, test, fail, and adapt are the ones who create real impact. Who knows? Your next big idea might start right here on this art board.
+</div>
+</section>
+
+<div class="studio-wrap">
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="logo-1">ARTBOARD</div>
+
+    <div class="toolbar-group">
+      <span class="label">Draw</span>
+      <button class="tool-btn active" id="btn-pen" data-tool="pen" data-tip="Pen (P)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-eraser" data-tool="eraser" data-tip="Eraser (E)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 20H7L3 16l10-10 7 7-3 4z"/><path d="M6.0001 11L13 18"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-text" data-tool="text" data-tip="Text (T)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+      </button>
+    </div>
+
+    <div class="toolbar-group">
+      <span class="label">Shapes</span>
+      <button class="tool-btn" id="btn-rect" data-tool="rect" data-tip="Rectangle (R)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-circle" data-tool="circle" data-tip="Ellipse (O)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-line" data-tool="line" data-tip="Line (L)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-arrow" data-tool="arrow" data-tip="Arrow (A)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-triangle" data-tool="triangle" data-tip="Triangle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,3 22,21 2,21"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-star" data-tool="star" data-tip="Star">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      </button>
+    </div>
+
+    <div class="toolbar-group">
+      <span class="label">Fill</span>
+      <div class="color-swatch" style="background:#00c3ff;" data-tip="Fill Color" title="Fill Color">
+        <input type="color" id="fillColor" value="#e8ff5a">
+      </div>
+      <span class="label">Stroke</span>
+      <div class="stroke-preview" id="strokePreview" style="background:#1a1a1f;" title="Stroke Color">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#e8ff5a" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        <input type="color" id="strokeColor" value="#ffffff">
+      </div>
+      <button class="tool-btn" id="btn-no-fill" data-tip="No Fill" title="No Fill" style="font-size:11px;font-family:'Space Mono',monospace;width:auto;padding:0 8px;">∅ fill</button>
+    </div>
+
+    <div class="toolbar-group">
+      <span class="label">Size</span>
+      <input type="range" class="size-slider" id="brushSize" min="1" max="60" value="4">
+      <span class="val-label" id="sizeVal">4px</span>
+    </div>
+
+    <div class="toolbar-group">
+      <span class="label">Opacity</span>
+      <input type="range" class="opacity-slider" id="opacity" min="5" max="100" value="100">
+      <span class="val-label" id="opacityVal">100%</span>
+    </div>
+
+    <div class="toolbar-group">
+      <button class="tool-btn" id="btn-cam" data-tip="Webcam" title="Take photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-undo" data-tip="Undo (Ctrl+Z)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-redo" data-tip="Redo (Ctrl+Y)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 14 20 9 15 4"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-clear" data-tip="Clear All" style="color:#ff5a5a;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      </button>
+      <button class="tool-btn" id="btn-save" data-tip="Save PNG">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN AREA -->
+  <div class="main-area">
+    <div class="canvas-container" id="canvasContainer">
+      <canvas id="mainCanvas"></canvas>
+      <canvas id="overlayCanvas"></canvas>
+
+      <!-- WEBCAM MODAL -->
+      <div class="cam-modal" id="camModal">
+        <div class="cam-inner">
+          <h3> Webcam Capture</h3>
+          <div style="position:relative;width:100%;">
+            <video id="webcamVideo" autoplay playsinline></video>
+            <div class="flash-overlay" id="flashOverlay"></div>
+          </div>
+          <div class="cam-controls">
+            <button class="cam-btn primary" id="captureBtn"> Capture</button>
+            <button class="cam-btn" id="closeCamBtn">✕ Close</button>
+          </div>
+          <p style="font-size:11px;color:#555;font-family:'Space Mono',monospace;">Photo will be placed on your artboard</p>
+        </div>
+      </div>
+
+      <!-- TEXT INPUT -->
+      <input type="text" id="textInput" placeholder="Type here, press Enter"
+        style="display:none;position:absolute;background:transparent;border:none;border-bottom:2px dashed #e8ff5a;
+               outline:none;color:#f0ede8;font-family:'Syne',sans-serif;font-size:18px;font-weight:700;
+               padding:4px 8px;min-width:120px;z-index:50;">
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="statusbar">
+    <span id="statusTool">Tool: Pen</span>
+    <span id="statusPos">X: — Y: —</span>
+    <span id="statusSize">Size: 4px</span>
+    <span id="undoCount">History: 0</span>
+    <span style="margin-left:auto;color:#333;">ARTBOARD STUDIO</span>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('mainCanvas');
+const overlay = document.getElementById('overlayCanvas');
+const ctx = canvas.getContext('2d');
+const octx = overlay.getContext('2d');
+const container = document.getElementById('canvasContainer');
+
+let currentTool = 'pen';
+let isDrawing = false;
+let startX, startY;
+let fillColor = '#e8ff5a';
+let strokeColor = '#ffffff';
+let brushSize = 4;
+let opacity = 1;
+let noFill = false;
+let history = [];
+let redoStack = [];
+let paths = [];
+let currentPath = [];
+let camStream = null;
+
+function resizeCanvas() {
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  canvas.width = w; canvas.height = h;
+  overlay.width = w; overlay.height = h;
+  ctx.putImageData(imgData, 0, 0);
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function saveState() {
+  history.push(canvas.toDataURL());
+  if (history.length > 50) history.shift();
+  redoStack = [];
+  document.getElementById('undoCount').textContent = 'History: ' + history.length;
+}
+
+function undo() {
+  if (!history.length) return;
+  redoStack.push(canvas.toDataURL());
+  const prev = history.pop();
+  const img = new Image();
+  img.onload = () => { ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0); };
+  img.src = prev;
+  document.getElementById('undoCount').textContent = 'History: ' + history.length;
+}
+
+function redo() {
+  if (!redoStack.length) return;
+  history.push(canvas.toDataURL());
+  const next = redoStack.pop();
+  const img = new Image();
+  img.onload = () => { ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0); };
+  img.src = next;
+}
+
+function applyStyles(c, isOverlay) {
+  c.globalAlpha = opacity;
+  c.lineWidth = brushSize;
+  c.lineCap = 'round';
+  c.lineJoin = 'round';
+  c.strokeStyle = strokeColor;
+  c.fillStyle = noFill ? 'transparent' : fillColor;
+}
+
+function getPos(e) {
+  const r = canvas.getBoundingClientRect();
+  const t = e.touches ? e.touches[0] : e;
+  return { x: t.clientX - r.left, y: t.clientY - r.top };
+}
+
+function drawStar(c, cx, cy, r, pts=5) {
+  const inner = r * 0.4;
+  c.beginPath();
+  for (let i = 0; i < pts * 2; i++) {
+    const rad = (Math.PI / pts) * i - Math.PI/2;
+    const rv = i % 2 === 0 ? r : inner;
+    const x = cx + Math.cos(rad) * rv;
+    const y = cy + Math.sin(rad) * rv;
+    i === 0 ? c.moveTo(x,y) : c.lineTo(x,y);
+  }
+  c.closePath();
+}
+
+function drawArrow(c, x1, y1, x2, y2) {
+  const angle = Math.atan2(y2-y1, x2-x1);
+  const len = 14 + brushSize;
+  c.beginPath();
+  c.moveTo(x1, y1);
+  c.lineTo(x2, y2);
+  c.stroke();
+  c.beginPath();
+  c.moveTo(x2, y2);
+  c.lineTo(x2 - len*Math.cos(angle-0.4), y2 - len*Math.sin(angle-0.4));
+  c.lineTo(x2 - len*Math.cos(angle+0.4), y2 - len*Math.sin(angle+0.4));
+  c.closePath();
+  c.fill();
+}
+
+function drawShape(c, tool, sx, sy, ex, ey) {
+  applyStyles(c);
+  const w = ex - sx, h = ey - sy;
+  c.beginPath();
+  switch(tool) {
+    case 'rect':
+      c.rect(sx, sy, w, h);
+      noFill ? c.stroke() : (c.fill(), c.stroke());
+      break;
+    case 'circle':
+      c.ellipse(sx + w/2, sy + h/2, Math.abs(w/2), Math.abs(h/2), 0, 0, Math.PI*2);
+      noFill ? c.stroke() : (c.fill(), c.stroke());
+      break;
+    case 'line':
+      c.moveTo(sx, sy); c.lineTo(ex, ey); c.stroke();
+      break;
+    case 'arrow':
+      drawArrow(c, sx, sy, ex, ey);
+      break;
+    case 'triangle':
+      c.moveTo((sx+ex)/2, sy); c.lineTo(ex, ey); c.lineTo(sx, ey); c.closePath();
+      noFill ? c.stroke() : (c.fill(), c.stroke());
+      break;
+    case 'star':
+      const r = Math.max(Math.abs(w), Math.abs(h)) / 2;
+      drawStar(c, sx + w/2, sy + h/2, r);
+      noFill ? c.stroke() : (c.fill(), c.stroke());
+      break;
+  }
+}
+
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', moveDraw);
+canvas.addEventListener('mouseup', endDraw);
+canvas.addEventListener('mouseleave', endDraw);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); startDraw(e); }, {passive:false});
+canvas.addEventListener('touchmove', e => { e.preventDefault(); moveDraw(e); }, {passive:false});
+canvas.addEventListener('touchend', e => { e.preventDefault(); endDraw(e); }, {passive:false});
+
+canvas.addEventListener('mousemove', e => {
+  const p = getPos(e);
+  document.getElementById('statusPos').textContent = `X: ${Math.round(p.x)} Y: ${Math.round(p.y)}`;
+});
+
+function startDraw(e) {
+  if (currentTool === 'text') return;
+  const p = getPos(e);
+  startX = p.x; startY = p.y;
+  isDrawing = true;
+  saveState();
+
+  if (currentTool === 'pen' || currentTool === 'eraser') {
+    applyStyles(ctx);
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    if (currentTool === 'eraser') {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.globalAlpha = 1;
+    } else {
+      ctx.globalCompositeOperation = 'source-over';
+    }
+  }
+}
+
+function moveDraw(e) {
+  if (!isDrawing) return;
+  const p = getPos(e);
+
+  if (currentTool === 'pen' || currentTool === 'eraser') {
+    ctx.lineWidth = brushSize;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if (currentTool === 'eraser') {
+      ctx.strokeStyle = 'rgba(0,0,0,1)';
+      ctx.lineWidth = brushSize * 2;
+    } else {
+      ctx.strokeStyle = strokeColor;
+      ctx.globalAlpha = opacity;
+    }
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+  } else {
+    octx.clearRect(0, 0, overlay.width, overlay.height);
+    drawShape(octx, currentTool, startX, startY, p.x, p.y);
+  }
+}
+
+function endDraw(e) {
+  if (!isDrawing) return;
+  isDrawing = false;
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 1;
+
+  if (currentTool !== 'pen' && currentTool !== 'eraser' && currentTool !== 'text') {
+    const p = getPos(e);
+    drawShape(ctx, currentTool, startX, startY, p ? p.x : startX, p ? p.y : startY);
+    octx.clearRect(0, 0, overlay.width, overlay.height);
+  }
+}
+
+// TEXT TOOL
+const textInput = document.getElementById('textInput');
+canvas.addEventListener('click', e => {
+  if (currentTool !== 'text') return;
+  const p = getPos(e);
+  textInput.style.display = 'block';
+  textInput.style.left = p.x + 'px';
+  textInput.style.top = (p.y - 14) + 'px';
+  textInput.style.fontSize = Math.max(14, brushSize * 3) + 'px';
+  textInput.style.color = fillColor;
+  textInput.focus();
+});
+
+textInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    saveState();
+    const x = parseInt(textInput.style.left);
+    const y = parseInt(textInput.style.top) + 20;
+    ctx.font = `700 ${Math.max(14, brushSize*3)}px Syne, sans-serif`;
+    ctx.fillStyle = fillColor;
+    ctx.globalAlpha = opacity;
+    ctx.fillText(textInput.value, x, y);
+    ctx.globalAlpha = 1;
+    textInput.value = '';
+    textInput.style.display = 'none';
+  }
+  if (e.key === 'Escape') { textInput.style.display = 'none'; textInput.value = ''; }
+});
+
+// TOOLS
+document.querySelectorAll('[data-tool]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentTool = btn.dataset.tool;
+    document.querySelectorAll('[data-tool]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('statusTool').textContent = 'Tool: ' + currentTool.charAt(0).toUpperCase() + currentTool.slice(1);
+    canvas.style.cursor = currentTool === 'eraser' ? 'cell' : currentTool === 'text' ? 'text' : 'crosshair';
+  });
+});
+
+document.getElementById('fillColor').addEventListener('input', e => {
+  fillColor = e.target.value;
+  noFill = false;
+  e.target.parentElement.style.background = fillColor;
+});
+document.getElementById('strokeColor').addEventListener('input', e => {
+  strokeColor = e.target.value;
+});
+document.getElementById('btn-no-fill').addEventListener('click', () => { noFill = !noFill; document.getElementById('btn-no-fill').classList.toggle('active', noFill); });
+document.getElementById('brushSize').addEventListener('input', e => {
+  brushSize = +e.target.value;
+  document.getElementById('sizeVal').textContent = brushSize + 'px';
+  document.getElementById('statusSize').textContent = 'Size: ' + brushSize + 'px';
+});
+document.getElementById('opacity').addEventListener('input', e => {
+  opacity = e.target.value / 100;
+  document.getElementById('opacityVal').textContent = e.target.value + '%';
+});
+document.getElementById('btn-undo').addEventListener('click', undo);
+document.getElementById('btn-redo').addEventListener('click', redo);
+document.getElementById('btn-clear').addEventListener('click', () => {
+  if (confirm('Clear entire artboard?')) {
+    saveState();
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+});
+document.getElementById('btn-save').addEventListener('click', () => {
+  const a = document.createElement('a');
+  a.download = 'artboard-' + Date.now() + '.png';
+  // Composite on white bg
+  const tmp = document.createElement('canvas');
+  tmp.width = canvas.width; tmp.height = canvas.height;
+  const tc = tmp.getContext('2d');
+  tc.fillStyle = '#1a1a1f';
+  tc.fillRect(0,0,tmp.width,tmp.height);
+  tc.drawImage(canvas,0,0);
+  a.href = tmp.toDataURL('image/png');
+  a.click();
+});
+
+// KEYBOARD SHORTCUTS
+document.addEventListener('keydown', e => {
+  if (e.target === textInput) return;
+  if ((e.ctrlKey||e.metaKey) && e.key==='z') { e.preventDefault(); undo(); }
+  if ((e.ctrlKey||e.metaKey) && (e.key==='y'||(e.shiftKey&&e.key==='z'))) { e.preventDefault(); redo(); }
+  const map = {p:'pen',e:'eraser',r:'rect',o:'circle',l:'line',a:'arrow',t:'text'};
+  if (map[e.key] && !e.ctrlKey && !e.metaKey) {
+    document.querySelector(`[data-tool="${map[e.key]}"]`).click();
+  }
+});
+
+// WEBCAM
+const camModal = document.getElementById('camModal');
+const video = document.getElementById('webcamVideo');
+
+document.getElementById('btn-cam').addEventListener('click', async () => {
+  try {
+    camStream = await navigator.mediaDevices.getUserMedia({ video: { width:640, height:480 } });
+    video.srcObject = camStream;
+    camModal.classList.add('open');
+  } catch(err) {
+    alert('Camera access denied or not available.\n' + err.message);
+  }
+});
+
+document.getElementById('captureBtn').addEventListener('click', () => {
+  const flash = document.getElementById('flashOverlay');
+  flash.style.opacity = 1;
+  setTimeout(() => flash.style.opacity = 0, 150);
+
+  const tmp = document.createElement('canvas');
+  tmp.width = video.videoWidth; tmp.height = video.videoHeight;
+  tmp.getContext('2d').drawImage(video, 0, 0);
+  const img = new Image();
+  img.onload = () => {
+    saveState();
+    const scale = Math.min(canvas.width * 0.6 / img.width, canvas.height * 0.6 / img.height);
+    const w = img.width * scale, h = img.height * scale;
+    const x = (canvas.width - w) / 2, y = (canvas.height - h) / 2;
+    ctx.globalAlpha = 1;
+    ctx.drawImage(img, x, y, w, h);
+    // Nice border
+    ctx.strokeStyle = '#e8ff5a'; ctx.lineWidth = 3;
+    ctx.strokeRect(x, y, w, h);
+  };
+  img.src = tmp.toDataURL('image/png');
+
+  stopCam();
+});
+
+function stopCam() {
+  if (camStream) { camStream.getTracks().forEach(t => t.stop()); camStream = null; }
+  video.srcObject = null;
+  camModal.classList.remove('open');
+}
+document.getElementById('closeCamBtn').addEventListener('click', stopCam);
+</script>
+
+<section class="kff-cta">
+  <div class="kff-cta-panel">
+    <h2>What can we help you achieve?</h2>
+    <a href="#" class="kff-cta-btn">Contact us</a>
+  </div>
+  <div class="kff-cta-panel">
+    <h2>Where will your idea take you?</h2>
+    <a href="#" class="kff-cta-btn">Register with us</a>
+  </div>
+</section>
+
+<footer class="kff-footer">
+
+  <div class="kff-footer-top">
+
+  <p class="kff-footer-tagline">
+    Stay ahead in a rapidly changing world. Subscribe to KFF Insights, our monthly look at the critical issues facing global business and finance.
+  </p>
+
+  <div class="kff-footer-subscribe">
+
+    
+  <div class="kff-footer-mid">
+    <a href="/" class="kff-footer-logo">
+      Keystone Finance Forum
+    </a>
+    <div class="kff-footer-socials">
+            <a 
+  href="https://x.com/Keystoneforum" 
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <i class="ti ti-brand-x"></i>
+</a>
+      <a 
+  href="https://www.linkedin.com/company/keystone-finance-forum/" 
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <i class="ti ti-brand-linkedin"></i>
+</a>
+<a 
+  href="https://www.instagram.com/keystone.forum/" 
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <i class="ti ti-brand-instagram"></i>
+</a>
+    </div>
+  </div>
+
+  <div class="kff-footer-bottom">
+    <ul class="kff-footer-links">
+      <li><a href="#">Contact us</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Terms of use</a></li>
+      <li><a href="#">Privacy</a></li>
+
+    </ul>
+    <p class="kff-footer-copy">© 2026–2027 Keystone Finance Forum, St. Patrick's Academy</p>
+  </div>
+
+
+</footer>
+
+</body>
+</html>

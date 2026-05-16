@@ -1,0 +1,397 @@
+/* ResultScreen.module.css */
+
+.wrapper {
+  min-height: 100vh;
+  background: #030712;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.grid {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,200,0,0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Celebration particles */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 2px;
+  top: -10px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Rank card */
+.rankCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.rankCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(var(--rank-color-rgb, 251,191,36),0.08) 0%, transparent 60%);
+}
+
+.rankEmoji {
+  font-size: 3rem;
+  animation: pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.rankLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.35);
+  margin-top: 4px;
+}
+
+.rankTitle {
+  font-family: 'Georgia', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.rankPlayer {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Score block */
+.scoreBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scoreMain {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.scoreNum {
+  font-family: 'Georgia', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #fbbf24;
+  line-height: 1;
+}
+
+.scoreMax {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.percentBar {
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.percentFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.percentLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+}
+
+/* Sections */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.3);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 8px;
+}
+
+/* Breakdown */
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.breakdownRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.breakdownCat {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  min-width: 160px;
+}
+
+.breakdownBar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.breakdownFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.breakdownScore {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  min-width: 28px;
+  text-align: right;
+}
+
+/* Review list */
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reviewItem {
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.reviewCorrect {
+  background: rgba(16,185,129,0.06);
+  border-color: rgba(16,185,129,0.18);
+}
+
+.reviewWrong {
+  background: rgba(239,68,68,0.05);
+  border-color: rgba(239,68,68,0.15);
+}
+
+.reviewTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewNum {
+  font-family: 'Courier New', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.3);
+}
+
+.reviewCategory {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.4);
+  flex: 1;
+}
+
+.reviewResult {
+  font-size: 0.85rem;
+}
+
+.reviewTitle {
+  font-family: 'Georgia', serif;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.reviewFramework {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  color: rgba(99,102,241,0.7);
+}
+
+.reviewCorrectAnswer {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: rgba(16,185,129,0.7);
+  line-height: 1.4;
+}
+
+/* Insight box */
+.insightBox {
+  background: rgba(99,102,241,0.07);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 14px;
+  padding: 1.4rem;
+}
+
+.insightTitle {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: rgba(99,102,241,0.8);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.insightText {
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  font-style: italic;
+}
+
+
+.rankCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.rankCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(var(--rank-color-rgb, 251,191,36),0.08) 0%, transparent 60%);
+}
+ 
+.rankEmoji {
+  font-size: 3rem;
+  animation: pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+ 
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+ 
+.rankLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.35);
+  margin-top: 4px;
+}
+ 
+.rankTitle {
+  font-family: 'Georgia', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+ 
+.rankPlayer {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+}
+ 
+.rankDescription {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+  max-width: 480px;
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* Restart button */
+.restartBtn {
+  align-self: center;
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.restartBtn:hover {
+  color: #ffffff;
+  border-color: #041CFF;
+  background: rgba(251,191,36,0.06);
+}

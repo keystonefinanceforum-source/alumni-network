@@ -1,0 +1,59 @@
+/* index.css — Global styles for Consultant Thinking Game */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #030712;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-root {
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(214, 12, 12, 0.12);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #041dff80;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #041dff;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #041dff96;
+  color: #fff;
+}

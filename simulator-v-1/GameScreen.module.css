@@ -1,0 +1,404 @@
+/* GameScreen.module.css */
+
+.wrapper {
+  min-height: 100vh;
+  background: #030712;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem 3rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.grid {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 201, 4, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HUD */
+.hud {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(3,7,18,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 1.5rem;
+}
+
+.hudLeft, .hudRight {
+  flex: 1;
+}
+
+.hudRight { text-align: right; }
+
+.hudCenter { text-align: center; }
+
+.playerTag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+}
+
+.questionCount {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+}
+
+.scoreDisplay {
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #041CFF;
+}
+
+/* Progress segments */
+.progressTrack {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  max-width: 760px;
+  padding: 0 20px;
+  margin-bottom: 1.5rem;
+  z-index: 10;
+  position: relative;
+}
+
+.progressSegment {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.progressDone {
+  background: #0059ff;
+}
+
+.progressActive {
+  background: #041CFF;
+  box-shadow: 0 0 8px #041CFF;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 760px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 10;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.cardEnter {
+  animation: slideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cardExit {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Card header */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(251, 190, 36, 0);
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #041CFF;
+}
+
+.difficultyBadge {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+/* Timer */
+.timerRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timerTrack {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.timerFill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.timerNum {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 28px;
+  text-align: right;
+  transition: color 0.3s;
+}
+
+/* Case title */
+.caseTitle {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Situation box */
+.situationBox {
+  background: rgba(99,102,241,0.06);
+  border: 1px solid rgba(99,102,241,0.15);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+}
+
+.situationLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: rgba(99,102,241,0.8);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.situation {
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.option:not(:disabled):hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateX(4px);
+}
+
+.optionRevealed {
+  cursor: default;
+}
+
+.optionLetter {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  min-width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.optionText {
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.optionIcon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Option states */
+.option_correct {
+  background: rgba(16,185,129,0.1) !important;
+  border-color: rgba(16,185,129,0.4) !important;
+}
+
+.option_correct .optionLetter {
+  background: rgba(16,185,129,0.2);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.option_correct .optionText {
+  color: #10b981;
+}
+
+.option_wrong {
+  background: rgba(239,68,68,0.08) !important;
+  border-color: rgba(239,68,68,0.35) !important;
+}
+
+.option_wrong .optionLetter {
+  background: rgba(239,68,68,0.15);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.option_wrong .optionText {
+  color: rgba(239,68,68,0.9);
+}
+
+/* Explanation */
+.explanation {
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.explanationCorrect {
+  background: rgba(16,185,129,0.07);
+  border: 1px solid rgba(16,185,129,0.25);
+}
+
+.explanationWrong {
+  background: rgba(239,68,68,0.07);
+  border: 1px solid rgba(239,68,68,0.2);
+}
+
+.explanationTimeout {
+  background: rgba(251,191,36,0.07);
+  border: 1px solid rgba(251,191,36,0.2);
+}
+
+.explanationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.frameworkTag {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.explanationText {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.pointsEarned {
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.bonusPts {
+  font-size: 0.82rem;
+  color: #fbbf24;
+}
+
+/* Next button */
+.nextBtn {
+  align-self: flex-end;
+  background: #041CFF;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  animation: fadeUp 0.4s ease 0.1s both;
+}
+
+.nextBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 110, 255, 0.651);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}

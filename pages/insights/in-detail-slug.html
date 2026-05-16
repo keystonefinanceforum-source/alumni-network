@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights | Report | Events - Explore our exclusive insights, reports & upcoming flagship events
+  </title>
+ <meta name="description" content="Explore insights, reports, and events covering business, finance, entrepreneurship, leadership, innovation, and global industry trends through expert analysis and research.">
+  <meta name="keywords" content="business insights, finance reports, business events, entrepreneurship, market research, leadership, innovation, economic trends, consulting, business analysis, corporate strategy, startup ecosystem, financial insights, industry reports, global business, research reports, networking events, business forum">
+  <meta name="author" content="Keystone">
+  <link rel="icon" href="/Src/assets/icons/logo/Icons.png" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Src/assets/icons/logo/Icons.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Src/assets/icons/logo/Icons.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Src/assets/icons/logo/Icons.png">
+  <meta property="og:title" content="About us - Why it started">
+  <meta property="og:description" content="Explore insights, reports, and events covering business, finance, entrepreneurship, leadership, innovation, and global industry trends through expert analysis and research.">
+  <meta property="og:image" content="/Src/assets/Logo/Patterned.png">
+  <meta property="og:url" content="https://keystoneff.org">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About us - Why it started">
+  <meta name="twitter:description" content="Explore insights, reports, and events covering business, finance, entrepreneurship, leadership, innovation, and global industry trends through expert analysis and research.">
+  <meta name="twitter:image" content="/Src/assets/Logo/Patterned.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/index-css/normalize.css">
+  <link rel="stylesheet" href="/index-css/insights-research-detail.css">
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@latest/dist/sanityClient.browser.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="/>
+<link rel="preconnect" href="https://img.icons8.com/">
+<link rel="preconnect" href="https://ajgroupsimages.b-cdn.net/">
+<link rel="preload" href="/index-css/index.css">
+<link rel="preload" href="https://ajgroupsimages.b-cdn.net/">
+ <link rel="preload" href="https://img.icons8.com/"> 
+<link rel="stylesheet" href="/CSS/insights-research-detail.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+/>
+
+</head>
+<body>
+
+  <nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">
+     <img src="/Src/assets/Logo/Untitled-1.png" alt="Keystone">
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="#">Partners</a></li>
+    <li><a href="#">Insights & Research Paper</a></li>
+    <li><a href="#">Leadership</a></li>
+    <li><a href="#">Alumni</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="#">Partners</a>
+    <a href="#">Insights</a>
+    <a href="#">Board</a>
+    <a href="#">Alumni</a>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+</script>
+
+
+<section id="insightDetailContainer"></section>
+
+<script type="module">
+
+const params = new URLSearchParams(window.location.search);
+
+const slug = params.get("slug");
+
+const QUERY = `
+*[_type == "insight" && slug.current == $slug][0]{
+  title,
+  snippet,
+  publishedAt,
+  category,
+  authors,
+  content[]{
+    ...,
+    asset->{
+      url
+    }
+  },
+  pdfFile{
+    asset->{
+      url
+    }
+  },
+  thumbnail{
+    asset->{
+      url
+    }
+  }
+}
+`;
+
+const BASE =
+"https://662mk9fk.api.sanity.io/v2025-08-25/data/query/production?perspective=published";
+
+function portableTextToHTML(blocks = []) {
+
+  return blocks.map(block => {
+
+    // TEXT
+    if (block._type === "block") {
+
+      const text = block.children
+        ?.map(child => child.text)
+        .join("");
+
+      return `<p>${text}</p>`;
+
+    }
+
+    // IMAGE
+    if (
+      block._type === "image" &&
+      block.asset?.url
+    ) {
+
+      return `
+        <img
+          src="${block.asset.url}"
+          class="ins-detail-inline-img"
+          loading="lazy"
+        >
+      `;
+
+    }
+
+    return "";
+
+  }).join("");
+
+}
+
+async function loadInsight() {
+
+  const container =
+    document.getElementById(
+      "insightDetailContainer"
+    );
+
+  try {
+
+    const url =
+      `${BASE}&query=${encodeURIComponent(QUERY)}&$slug="${slug}"`;
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(res.status);
+    }
+
+    const data = await res.json();
+
+    console.log(data);
+
+    const insight = data.result;
+
+    if (!insight) {
+
+      container.innerHTML =
+        `<p>Insight not found.</p>`;
+
+      return;
+
+    }
+
+    container.innerHTML = `
+
+      <article class="ins-detail-wrap">
+
+        <div class="ins-detail-hero">
+
+          <img
+            src="${insight.thumbnail?.asset?.url || ''}"
+            alt="${insight.title}"
+            class="ins-detail-hero-img"
+          >
+
+          <div class="ins-detail-overlay">
+
+            <p class="ins-detail-category">
+              ${insight.category || ''}
+            </p>
+
+            <h1 class="ins-detail-title">
+              ${insight.title || ''}
+            </h1>
+
+          </div>
+
+        </div>
+
+        <div class="ins-detail-content">
+
+          <div class="ins-detail-meta">
+
+            ${new Date(
+              insight.publishedAt
+            ).toLocaleDateString()}
+
+            ${
+              insight.authors?.length
+              ? ` • ${insight.authors.join(", ")}`
+              : ''
+            }
+
+          </div>
+
+          <div class="ins-detail-snippet">
+            ${insight.snippet || ''}
+          </div>
+
+          <div class="ins-detail-body">
+            ${portableTextToHTML(
+              insight.content
+            )}
+          </div>
+
+          ${
+            insight.pdfFile?.asset?.url
+            ? `
+              <div class="ins-pdf-wrap">
+
+                <a
+                  href="${insight.pdfFile.asset.url}"
+                  target="_blank"
+                  class="ins-pdf-btn"
+                >
+                  Download PDF
+                </a>
+
+              </div>
+            `
+            : ''
+          }
+
+        </div>
+
+      </article>
+
+    `;
+
+  } catch (err) {
+
+    console.error(err);
+
+    document.getElementById(
+      "insightDetailContainer"
+    ).innerHTML = `
+      <p style="color:red;">
+        Failed to load insight.
+      </p>
+    `;
+
+  }
+
+}
+
+loadInsight();
+
+</script>
+
+<section class="kff-cta">
+  <div class="kff-cta-panel">
+    <h2>What can we help you achieve?</h2>
+    <a href="#" class="kff-cta-btn">Contact us</a>
+  </div>
+  <div class="kff-cta-panel">
+    <h2>Where will your idea take you?</h2>
+    <a href="#" class="kff-cta-btn">Register with us</a>
+  </div>
+</section>
+
+<footer class="kff-footer">
+
+  <div class="kff-footer-top">
+
+  <p class="kff-footer-tagline">
+    Stay ahead in a rapidly changing world. Subscribe to KFF Insights, our monthly look at the critical issues facing global business and finance.
+  </p>
+
+  <div class="kff-footer-subscribe">
+
+    
+  <div class="kff-footer-mid">
+    <a href="/" class="kff-footer-logo">
+      Keystone Finance Forum
+    </a>
+    <div class="kff-footer-socials">
+            <a 
+  href="https://x.com/Keystoneforum" 
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <i class="ti ti-brand-x"></i>
+</a>
+      <a 
+  href="https://www.linkedin.com/company/keystone-finance-forum/" 
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <i class="ti ti-brand-linkedin"></i>
+</a>
+<a 
+  href="https://www.instagram.com/keystone.forum/" 
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <i class="ti ti-brand-instagram"></i>
+</a>
+    </div>
+  </div>
+
+  <div class="kff-footer-bottom">
+    <ul class="kff-footer-links">
+      <li><a href="#">Contact us</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Terms of use</a></li>
+      <li><a href="#">Privacy</a></li>
+
+    </ul>
+    <p class="kff-footer-copy">© 2026–2027 Keystone Finance Forum, St. Patrick's Academy</p>
+  </div>
+
+
+</footer>
+
+</body>
+</html>
